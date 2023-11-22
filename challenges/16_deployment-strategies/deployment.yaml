@@ -4,7 +4,7 @@ metadata:
   labels:
     run: demo-app
   name: demo-app
-  namespace: <your-namespace>
+  namespace: sebastiankr
 spec:
   replicas: 5
   revisionHistoryLimit: 10
@@ -12,8 +12,10 @@ spec:
     matchLabels:
       run: demo-app
   strategy:
-    type: Recreate
+    type: RollingUpdate
     rollingUpdate:
+      maxSurge: 60%
+      maxUnavailable: 20%
   template:
     metadata:
       labels:
@@ -21,7 +23,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-        - image: argoproj/rollouts-demo:blue
+        - image: argoproj/rollouts-demo:green
           name: demo-app
           resources:
             limits: {}

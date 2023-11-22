@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ping-daemon
+  namespace: sebastiankr
+spec:
+  selector:
+    matchLabels:
+      name: ping-daemon
+  template:
+    metadata:
+      labels:
+        name: ping-daemon
+      name: ping-daemon
+      namespace: sebastiankr
+    spec:
+      containers:
+        - name: ping-daemon
+          image: alpine
+          command:
+            - 'ping'
+            - 'publiccloudgroup.com'

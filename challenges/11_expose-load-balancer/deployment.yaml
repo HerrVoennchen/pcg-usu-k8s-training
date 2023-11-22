@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: caddy
+  namespace: sebastiankr
   labels:
     app: caddy
+    app.kubernetes.io/name: caddy
 spec:
   replicas: 3
   selector:
@@ -15,13 +17,13 @@ spec:
         app: caddy
     spec:
       containers:
-      - name: caddy
-        image: caddy:2.6.4
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            cpu: 200m
-          limits:
-            memory: 128Mi
-            cpu: 500m
+        - name: caddy
+          image: caddy:2.6.4
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 200m
+            limits:
+              memory: 128Mi
+              cpu: 500m

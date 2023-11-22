@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
+  name: skr-app-argo-application
   namespace: argocd
 spec:
   project: default
 
   source:
-    repoURL:
-    targetRevision:
+    repoURL: https://github.com/HerrVoennchen/pcg-usu-k8s-training.git
+    targetRevision: sebastiankr
     path: challenges/18_argocd/app
   destination:
-    server:
+    server: https://kubernetes.default.svc
     namespace: sebastiankr
 
   syncPolicy:

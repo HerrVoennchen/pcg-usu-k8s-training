@@ -2,10 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: ping-daemon
+  namespace: sebastiankr
 spec:
   containers:
-  - name: ping-daemon
-    image: alpine
-    command:
-    - "ping"
-    - "publiccloudgroup.com"
+    - name: ping-daemon
+      image: alpine
+      command:
+        - 'ping'
+        - 'publiccloudgroup.com'

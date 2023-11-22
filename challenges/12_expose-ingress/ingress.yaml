@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: https-ingress
+  namespace: sebastiankr
+  annotations:
+    cert-manager.io/cluster-issuer: 'letsencrypt'
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - caddy2.k8s.usu.trygoo.gl
+      secretName: ingress-tls
+  rules:
+    - host: caddy2.k8s.usu.trygoo.gl
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-caddy-service
+                port:
+                  number: 80

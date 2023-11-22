@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: sebastiankr
+spec:
+  podSelector:
+    matchLabels:
+      role: nginx
+  policyTypes:
+    - Ingress
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 10.0.0.0/24
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: sebastiankr
+spec:
+  podSelector:
+    matchLabels:
+      role: nginx
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: ubuntu-demo
