@@ -4,7 +4,7 @@ metadata:
   labels:
     run: demo-app
   name: demo-app
-  namespace: mariusbu
+  namespace: sebastiankr
 spec:
   replicas: 5
   revisionHistoryLimit: 10
